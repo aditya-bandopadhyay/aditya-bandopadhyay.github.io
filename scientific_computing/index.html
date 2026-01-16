@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools for Scientific Computing</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Override or add specific plain styles for this deep-level page if needed */
+        .container {
+            max-width: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../cv.html">Curriculum Vitae</a>
+            <a href="../teaching.html">Teaching and Resources</a>
+            <a href="../publications.html">Publications</a>
+            <a href="../patents.html">Patents</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <p><a href="../teaching.html">&larr; Back to Teaching</a></p>
+
+        <h1>Tools for Scientific Computing</h1>
+
+        <div class="banner-container">
+            <img src="index0x.png" alt="Scientific Computing Banner">
+        </div>
+
+        <div class="table-container">
+            <!-- Recreated Table from Source -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>LEC</th>
+                        <th>TOPIC</th>
+                        <th>OCTAVE</th>
+                        <th>PYTHON</th>
+                        <th>Youtube Link</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            { lec: "1", topic: "Preliminaries and Data types", octave: "lec01", python: "lec01", video: "https://youtu.be/eXfRVNtoHa4" },
+            { lec: "2", topic: "Loops and Conditionals, Bubble sort", octave: "lec02", python: "lec02", video: "https://youtu.be/XZXDlsCvlVQ" },
+            { lec: "3", topic: "Commonly used functions, plotting, file IO", octave: "lec03", python: "lec03", video: "https://youtu.be/T-4FqtQ6ruU" },
+            { lec: "4", topic: "Matrix Manipulations and Mohr circle", octave: "lec04", python: "lec04", video: "https://youtu.be/5GXjsSOJyUY" },
+            { lec: "5", topic: "Nonlinear algebraic equations - Visualizing convergence", octave: "lec05", python: "lec05", video: "https://youtu.be/oeQa3E2vHOg" },
+            { lec: "6", topic: "Nonlinear algebraic equations - system of equation and Newton's basin of attraction", octave: "lec06", python: "lec06", video: "https://youtu.be/NECIjXk75bo" },
+            { lec: "7", topic: "Overview of Jupyter Lab, Octave GUI, Spyder GUI", octave: "-", python: "-", video: "https://youtu.be/G3AiOiIxHZk" },
+            { lec: "8", topic: "Interactivity with Python - Ipywidgets", octave: "lec08", python: "lec08", video: "https://youtu.be/g-ned-W3YT8" },
+            { lec: "9", topic: "Geometric Interpretations of ODEs", octave: "lec09", python: "lec09", video: "https://youtu.be/iOsHLO0ufhM" },
+            { lec: "10", topic: "Bifurcations: Saddle node bifurcation", octave: "lec10", python: "lec10", video: "https://youtu.be/LiZtA8qbtbk" },
+            { lec: "11", topic: "Bifurcation: Transcritical bifurcation", octave: "lec11", python: "lec11", video: "https://youtu.be/tvOwNUjfUW4" },
+            { lec: "12", topic: "Bifurcation: Pitchfork bifurcation", octave: "lec12", python: "lec12", video: "https://youtu.be/sLD8GrAZHtg" },
+            { lec: "13", topic: "Imperfect bifurcations and catastrophies", octave: "lec13", python: "lec13", video: "https://youtu.be/_c7v03u970A" },
+            { lec: "14", topic: "2D flows - linear systems", octave: "lec14", python: "lec14", video: "https://youtu.be/dAJcaeNDrzw" },
+            { lec: "15", topic: "2D flows - Trajectories: spirals, star and degeneracy", octave: "lec15", python: "lec15", video: "https://youtu.be/_tJdJz-UlMw" },
+            { lec: "16", topic: "Phase portraits - nonlinear systems", octave: "lec16", python: "lec16", video: "https://youtu.be/29M6TQP0YQY" },
+            { lec: "17", topic: "2D phase portraits - limit cycles", octave: "lec17", python: "lec17", video: "https://youtu.be/_89hIEKbdUs" },
+            { lec: "18", topic: "Bifurcations and 3D flows", octave: "lec18", python: "lec18", video: "https://youtu.be/ocQEJPEk4sE" },
+            { lec: "19", topic: "1D Maps", octave: "lec19", python: "lec19", video: "https://youtu.be/q1IYPwRNT3k" },
+            { lec: "20", topic: "Monte-carlo simulations: Darts and Buffon's needle", octave: "lec20", python: "lec20", video: "https://youtu.be/1aq47SxEYCs" },
+            { lec: "21", topic: "Probability density functions and sampling", octave: "lec21", python: "lec21", video: "https://youtu.be/oOyowU-CsWc" },
+            { lec: "22", topic: "1D Random walks", octave: "lec22", python: "lec22", video: "https://youtu.be/JulmsJHJ0cI" },
+            { lec: "23", topic: "2D Random walks", octave: "lec23", python: "lec23", video: "https://youtu.be/BNHR97qS5qE" },
+            { lec: "24", topic: "Boundary Value Problems", octave: "lec24", python: "lec24", video: "https://youtu.be/HsTxBEgYD5I" },
+            { lec: "25", topic: "Boundary Value Problems - p2", octave: "lec25", python: "lec25", video: "https://youtu.be/mWn91rkkp0U" },
+            { lec: "26", topic: "Regular Perturbation for ODE", octave: "lec26", python: "lec26", video: "https://youtu.be/PMeDdohCqUQ" },
+            { lec: "27", topic: "Singular Perturbation for ODE", octave: "lec27", python: "lec27", video: "https://youtu.be/NR8eJf9FgTY" },
+            { lec: "28", topic: "2D Boundary Values Problems", octave: "lec28", python: "lec28", video: "https://youtu.be/CPdt3n0_wRM" },
+            { lec: "-", topic: "Make file for PETSc programs", octave: "<a href='./files/makefile'>makefile</a>", python: "-", video: "-" },
+            { lec: "29", topic: "PETSc and MPI basics", octave: "<a href='./files/expo_petsc.c'>lec29 C file</a>", python: "-", video: "https://youtu.be/HSThYF0LeGU" },
+            { lec: "30", topic: "PETSc - Creating Vectors and Matrices", octave: "<a href='./files/decl_vector.c'>lec30 C file</a>", python: "-", video: "https://youtu.be/kP7DAOrqECo" },
+            { lec: "31", topic: "KSP object and solving a system", octave: "<a href='./files/sol_sim_system'>lec31 f1</a>, <a href='./files/tridiag'>lec31 f2</a>", python: "-", video: "https://youtu.be/ZQq865cWDic" },
+            { lec: "32", topic: "Poisson equation in PETSc", octave: "<a href='./files/poisson.c'>lec32 C file</a>", python: "-", video: "https://youtu.be/lSXBiLlyfJQ" },
+            { lec: "33", topic: "Nonlinear Solver of PETSc", octave: "<a href='./files/nlin_1.c'>lec33 C file</a>", python: "-", video: "https://youtu.be/Xgi4M6d9Hh8" },
+            { lec: "34", topic: "Nonlinear solver with Jacobian in PETSc", octave: "<a href='./files/nlin_2.c'>lec34 C file</a>", python: "-", video: "https://youtu.be/dnQZyOqGhZw" },
+            { lec: "35", topic: "Reaction-diffusion system in PETSc", octave: "<a href='./files/rxn_dfn.c'>lec35 C file</a>", python: "-", video: "https://youtu.be/L1-SdmbYEXo" },
+            { lec: "36", topic: "Time stepping in PETSc", octave: "<a href='./files/ode_ts.c'>lec36 C file</a>", python: "-", video: "https://youtu.be/7wJ_KDlp4AE" },
+            { lec: "37", topic: "Heat transport using PETSc", octave: "<a href='./files/heat2d.c'>lec37 C file</a>", python: "-", video: "https://youtu.be/aL4vj-PiZxg" },
+            { lec: "38", topic: "PETSc - Turing patterns", octave: "<a href='./files/turing.c'>lec38 C file</a>", python: "-", video: "https://youtu.be/omf3XSrScF0" },
+            { lec: "39", topic: "Audio analysis - determine RPM of motor", octave: "lec39", python: "lec39", video: "https://youtu.be/mNqQjdIipsw", extra: ["<a href='./files/fan.wav'>Fan audio</a>", "<a href='./files/bench.wav'>Benchgrinder audio</a>"] },
+            { lec: "40", topic: "Audio analysis - Doppler shift", octave: "lec40", python: "lec40", video: "https://youtu.at/aK_yje1W6tM", extra: ["<a href='./files/horn.wav'>Horn audio</a>"] },
+            { lec: "41", topic: "Image processing - preliminaries", octave: "-", python: "<a href='./files/lec41.py'>lec41</a>", video: "https://youtu.be/tu3Ezq5voxY", extra: ["<a href='./files/balloon.mp4'>balloon video</a>"] },
+            { lec: "42", topic: "Balloon problem and viscous fingers", octave: "-", python: "<a href='./files/lec42.py'>lec42</a>", video: "https://youtu.be/-_skmn99F5I", extra: ["<a href='./files/visc.MOV'>viscous fingering</a>"] },
+            { lec: "43", topic: "Analyzing data files and 2D interpolation", octave: "lec43", python: "lec43", video: "https://youtu.be/RlrgmV8mAas", extra: ["<a href='./files/data_fan.zip'>Datasets</a>"] }
+        ];
+
+        const tbody = document.getElementById('table-body');
+        data.forEach(item => {
+            const row = document.createElement('tr');
+
+            let octaveLink = item.octave;
+            if (item.octave !== "-" && !item.octave.includes("<a")) {
+                octaveLink = `<a href="./files/${item.octave}_Octave.html">${item.octave}</a>`;
+            }
+
+            let pythonLink = item.python;
+            if (item.python !== "-" && !item.python.includes("<a")) {
+                pythonLink = `<a href="./files/${item.python}.html">${item.python}</a>`;
+            }
+
+            let videoLink = item.video === "-" ? "-" : `<a href="${item.video}" target="_blank">${item.video}</a>`;
+
+            let topicContent = item.topic;
+            if (item.extra) {
+                topicContent += "<br><small>" + item.extra.join(', ') + "</small>";
+            }
+
+            row.innerHTML = `
+                <td>${item.lec}</td>
+                <td>${topicContent}</td>
+                <td>${octaveLink}</td>
+                <td>${pythonLink}</td>
+                <td>${videoLink}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    </script>
+</body>
+
+</html>
