@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Property Lookup Tool</title>
+    <meta name="description" content="Interactive IAPWS-IF97 steam property calculator with T-v, P-v, and T-s diagrams">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Left Panel: Controls and Output -->
+        <aside class="control-panel">
+            <nav style="margin-bottom: 20px;">
+                <a href="index.html" style="color: var(--accent-primary); text-decoration: underline;">&larr; Back to
+                    Thermodynamics Resources</a>
+            </nav>
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <span>Light</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="theme-slider"></span>
+                </label>
+                <span>Dark</span>
+            </div>
+
+            <header class="panel-header">
+                <h1>Steam Properties</h1>
+                <p class="subtitle">IAPWS-IF97 Standard</p>
+            </header>
+
+            <!-- Input Selection -->
+            <section class="input-section">
+                <h2>Input Variables</h2>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="inputPair" value="PT" checked>
+                        <span>P - T</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="inputPair" value="Ph">
+                        <span>P - h</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="inputPair" value="Ps">
+                        <span>P - s</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="inputPair" value="Tx">
+                        <span>T - x</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="inputPair" value="Px">
+                        <span>P - x</span>
+                    </label>
+                </div>
+
+                <!-- Input Fields -->
+                <div class="input-fields">
+                    <div class="input-group" id="input1-group">
+                        <label id="input1-label">Pressure (kPa)</label>
+                        <input type="number" id="input1" step="any" placeholder="e.g., 101.325">
+                    </div>
+                    <div class="input-group" id="input2-group">
+                        <label id="input2-label">Temperature (°C)</label>
+                        <input type="number" id="input2" step="any" placeholder="e.g., 100">
+                    </div>
+                    <button id="calculate-btn" class="btn-primary">Calculate</button>
+                </div>
+            </section>
+
+            <!-- Phase Display -->
+            <div class="phase-display" id="phase-display">
+                <span class="phase-label">Phase:</span>
+                <span class="phase-value" id="phase-value">--</span>
+            </div>
+
+            <!-- Output Table -->
+            <section class="output-section">
+                <h2>Properties</h2>
+                <table class="properties-table">
+                    <tbody>
+                        <tr>
+                            <td class="prop-name">Temperature</td>
+                            <td class="prop-value" id="out-T">--</td>
+                            <td class="prop-unit">°C</td>
+                        </tr>
+                        <tr>
+                            <td class="prop-name">Pressure</td>
+                            <td class="prop-value" id="out-P">--</td>
+                            <td class="prop-unit">kPa</td>
+                        </tr>
+                        <tr>
+                            <td class="prop-name">Specific Volume</td>
+                            <td class="prop-value" id="out-v">--</td>
+                            <td class="prop-unit">m³/kg</td>
+                        </tr>
+                        <tr>
+                            <td class="prop-name">Enthalpy</td>
+                            <td class="prop-value" id="out-h">--</td>
+                            <td class="prop-unit">kJ/kg</td>
+                        </tr>
+                        <tr>
+                            <td class="prop-name">Entropy</td>
+                            <td class="prop-value" id="out-s">--</td>
+                            <td class="prop-unit">kJ/(kg·K)</td>
+                        </tr>
+                        <tr>
+                            <td class="prop-name">Internal Energy</td>
+                            <td class="prop-value" id="out-u">--</td>
+                            <td class="prop-unit">kJ/kg</td>
+                        </tr>
+                        <tr>
+                            <td class="prop-name">Quality</td>
+                            <td class="prop-value" id="out-x">--</td>
+                            <td class="prop-unit">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </aside>
+
+        <!-- Right Panel: Chart -->
+        <main class="chart-panel">
+            <div class="chart-controls">
+                <div class="diagram-toggle">
+                    <button class="diagram-btn active" data-diagram="Tv">T-v</button>
+                    <button class="diagram-btn" data-diagram="Pv">P-v</button>
+                    <button class="diagram-btn" data-diagram="Ts">T-s</button>
+                </div>
+            </div>
+            <div id="chart-container"></div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
