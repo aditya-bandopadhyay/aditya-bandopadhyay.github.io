@@ -59,6 +59,26 @@ This script will:
 2.  Commit with the provided message.
 3.  Push to the `main` branch of the remote repository.
 
+## File and Script Glossary
+
+To help manage the repository, here is a description of the key files and scripts:
+
+### Root Level Scripts
+- `deploy.sh`: Automates the Git workflow. It adds all changes, commits with a message (defaults to "Update website content"), and pushes to the `main` branch.
+- `update_content.sh`: Orchestrates the transition from raw data to a live site. It runs the content generation and injection scripts in sequence.
+- `run_server.sh`: Starts a local Python HTTP server on `http://localhost:8000`. Use this to preview your changes before deploying.
+
+### Directories and Support Files
+- `scripts/`: Contains the core logic for content management.
+  - `generate_content.py`: Parses CSV files (Papers, Patents, Talks) and creates HTML fragments.
+  - `inject_content.py`: Updates `publications.html` and `patents.html` by inserting the generated fragments.
+- `teaching/`: Contains teaching-related interactive tools and landing pages.
+  - `thermo/`: Dedicated landing page and tools for Thermodynamics (e.g., `steam.html`).
+- `scientific_computing/`: Contains resources, code samples, and materials for the Scientific Computing course.
+- `styles.css`: The primary CSS file defining the minimalist academic aesthetic of the entire site.
+- `teaching_resources.md`: A checklist and set of notes for deploying new interactive tools.
+- `index_builder.md`: Reference notes for maintaining the main site navigation and structure.
+
 ## Troubleshooting
 
 - **Missing Content?** Check if the CSV file path in `scripts/generate_content.py` is correct.
