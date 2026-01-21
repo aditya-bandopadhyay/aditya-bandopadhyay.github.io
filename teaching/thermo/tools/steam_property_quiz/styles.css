@@ -1,0 +1,416 @@
+/* Version: 2.0 - Plain UI with Times New Roman */
+/* ===== CSS Variables for Theming ===== */
+:root {
+  --bg-primary: #d0d0d0;
+  --bg-secondary: #c0c0c0;
+  --bg-tertiary: #b0b0b0;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --accent: #555555;
+  --accent-hover: #777777;
+  --border: #999999;
+  --success: #4ade80;
+  --error: #ef4444;
+  --given: #d97706;
+  --table-header: #b0b0b0;
+  --table-row-alt: #c8c8c8;
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #e0e0e0;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --accent: #555555;
+  --accent-hover: #777777;
+  --border: #bbbbbb;
+  --given: #d97706;
+  --table-header: #e0e0e0;
+  --table-row-alt: #f9f9f9;
+}
+
+/* ===== Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ===== Header ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.header-controls button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+}
+
+.header-controls button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ===== Main Layout ===== */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.quiz-section {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.instructions {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ===== Property Table ===== */
+.table-container {
+  overflow-x: auto;
+}
+
+#property-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#property-table th,
+#property-table td {
+  padding: 0.6rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+#property-table th {
+  background: var(--table-header);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+#property-table input,
+#property-table select {
+  width: 100%;
+  min-width: 60px;
+  padding: 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+#property-table input:focus,
+#property-table select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#property-table input[readonly] {
+  background: var(--bg-tertiary);
+  color: var(--given);
+  font-weight: 600;
+  border-color: var(--given);
+}
+
+#property-table select {
+  min-width: 50px;
+}
+
+/* Quality column hidden for superheated */
+#quality-header.hidden,
+#quality-cell.hidden {
+  display: none;
+}
+
+/* ===== Buttons ===== */
+.button-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.button-row button {
+  padding: 0.6rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#check-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+#check-btn:hover {
+  background: var(--border);
+}
+
+#submit-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+#submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.4);
+}
+
+/* ===== Feedback ===== */
+#feedback-section {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  display: none;
+}
+
+#feedback-section.show {
+  display: block;
+}
+
+#feedback-section.success {
+  background: rgba(74, 222, 128, 0.15);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+#feedback-section.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+/* ===== Input Validation States ===== */
+input.correct {
+  border-color: var(--success) !important;
+  background: rgba(74, 222, 128, 0.1) !important;
+}
+
+input.incorrect {
+  border-color: var(--error) !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+select.correct {
+  border-color: var(--success) !important;
+}
+
+select.incorrect {
+  border-color: var(--error) !important;
+}
+
+/* ===== Modal ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  overflow: auto;
+}
+
+.modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 90vw;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.close-btn:hover {
+  color: var(--accent);
+}
+
+/* ===== Table Tabs ===== */
+.table-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  max-height: 60vh;
+}
+
+/* ===== Data Tables ===== */
+#sat-table-temp,
+#sat-table-pres,
+#super-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+#sat-table-temp th,
+#sat-table-temp td,
+#sat-table-pres th,
+#sat-table-pres td,
+#super-table th,
+#super-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: right;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+#sat-table-temp th,
+#sat-table-pres th,
+#super-table th {
+  background: var(--table-header);
+  position: sticky;
+  top: 0;
+  font-weight: 600;
+}
+
+#sat-table-temp tbody tr:nth-child(even),
+#sat-table-pres tbody tr:nth-child(even),
+#super-table tbody tr:nth-child(even) {
+  background: var(--table-row-alt);
+}
+
+/* ===== Sub-tabs ===== */
+.sub-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.sub-tab-btn {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.sub-tab-btn.active {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.sub-tab-content {
+  display: none;
+}
+
+.sub-tab-content.active {
+  display: block;
+}
+
+/* ===== Pressure Header Rows ===== */
+.pressure-header {
+  background: var(--accent) !important;
+  color: white;
+  font-weight: 600;
+  text-align: left !important;
+}
+
+.pressure-header td {
+  padding: 0.6rem 0.75rem !important;
+  text-align: left !important;
+  border-top: 2px solid var(--accent);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  main {
+    padding: 1rem;
+  }
+
+  #property-table input,
+  #property-table select {
+    min-width: 50px;
+    font-size: 0.75rem;
+  }
+}

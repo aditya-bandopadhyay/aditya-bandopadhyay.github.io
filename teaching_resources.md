@@ -1,20 +1,53 @@
-Deploy the Steam Property Lookup Tool to GitHub Pages
+# Teaching Resources Deployment Guide
 
-Copy the following files from /home/aditya/Thermodynamics related/Ch1_properties_pure_substances/ to my GitHub Pages repository:
+## Steam Property Lookup Tool
 
-Files to copy:
+Deployed from: `/home/aditya/Thermodynamics related/Ch1_properties_pure_substances/`
 
-index.html
-styles.css
-app.js
-data/saturation_dome.json
-data/saturation_tables.json
-data/property_grid.json
-Deployment location: Place these in a subdirectory called steam-properties/ (or at root if preferred).
+Files copied to: `teaching/thermo/tools/steam_property_lookup/`
 
-After copying:
+Files:
+- index.html
+- styles.css
+- app.js
+- data/saturation_dome.json
+- data/saturation_tables.json
+- data/property_grid.json
 
-Commit with message: "Add interactive steam property lookup tool"
-Push to the repository
-Verify the tool is accessible at https://aditya-bandopadhyay.github.io/steam-properties/
+Accessible at: https://aditya-bandopadhyay.github.io/teaching/thermo/tools/steam_property_lookup/
+
+## Steam Property Quiz
+
+Deployed from: `/home/aditya/Thermodynamics related/Pure_substances/web_app_properties_pure_substance/`
+
+Files copied to: `teaching/thermo/tools/steam_property_quiz/`
+
+Files:
+- index.html
+- styles.css
+- app.js
+- data/property_grid.json
+- data/saturation_dome.json
+- data/saturation_tables.json
+
+Accessible at: https://aditya-bandopadhyay.github.io/teaching/thermo/tools/steam_property_quiz/
+
+## Directory Structure
+
+```
+teaching/thermo/
+├── index.html                          (Landing page listing all tools)
+└── tools/                              (All interactive tools)
+    ├── steam_property_lookup/
+    └── steam_property_quiz/
+```
+
+## Deployment Steps
+
+After making changes:
+
+1. Commit with descriptive message
+2. Push to the repository
+3. Verify tools are accessible at the URLs above
+
 Note: The data/ folder structure must be preserved. The JSON files are loaded via fetch at runtime.

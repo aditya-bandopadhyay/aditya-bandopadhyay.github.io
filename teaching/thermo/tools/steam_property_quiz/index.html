@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam Property Quiz | Aditya Bandopadhyay</title>
+  <link rel="stylesheet" href="../../../../styles.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .site-nav {
+      background: var(--bg-primary, #fff);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-color, #ddd);
+      margin-bottom: 1rem;
+    }
+
+    .site-nav nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .site-nav a {
+      margin-right: 1.5rem;
+      text-decoration: none;
+      color: var(--text-primary, #000);
+    }
+
+    .site-nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-nav">
+    <nav>
+      <a href="../../../../index.html">Home</a>
+      <a href="../../../../cv.html">Curriculum Vitae</a>
+      <a href="../../../../teaching.html">Teaching and Resources</a>
+      <a href="../../../../publications.html">Publications</a>
+      <a href="../../../../patents.html">Patents</a>
+    </nav>
+  </div>
+
+  <header>
+    <h1>Steam Property Quiz</h1>
+    <div class="header-controls">
+      <button id="theme-toggle" title="Toggle Theme">🌓</button>
+      <button id="view-tables-btn">View Tables</button>
+      <button id="restart-btn">Restart</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="quiz-section">
+      <p class="instructions">
+        Enter the unknown properties in the input fields, select the phase, and click Check to validate or
+        Submit to view the correct answers. Refer to the property tables for reference.
+      </p>
+      <p class="bug-report" style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">
+        If you encounter any issues, please email aditya-at-mech-dot-iitkgp-dot-ac-dot-in.
+      </p>
+
+      <div class="table-container">
+        <table id="property-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>P (kPa)</th>
+              <th>T (°C)</th>
+              <th>v (m³/kg)</th>
+              <th>h (kJ/kg)</th>
+              <th>s (kJ/kg·K)</th>
+              <th>u (kJ/kg)</th>
+              <th id="quality-header">x</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="answer-row">
+              <td>
+                <select id="phase-select">
+                  <option value="">--</option>
+                  <option value="saturated">Sat</option>
+                  <option value="superheated">SH</option>
+                </select>
+              </td>
+              <td><input type="text" id="input-P" data-property="P"></td>
+              <td><input type="text" id="input-T" data-property="T"></td>
+              <td><input type="text" id="input-v" data-property="v"></td>
+              <td><input type="text" id="input-h" data-property="h"></td>
+              <td><input type="text" id="input-s" data-property="s"></td>
+              <td><input type="text" id="input-u" data-property="u"></td>
+              <td id="quality-cell">
+                <input type="text" id="input-x" data-property="x" placeholder="--">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="button-row">
+        <button id="check-btn">Check</button>
+        <button id="submit-btn">Submit</button>
+      </div>
+
+      <div id="feedback-section"></div>
+    </section>
+  </main>
+
+  <!-- Modal for property tables -->
+  <div id="table-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Steam Property Tables</h2>
+
+      <div class="table-tabs">
+        <button class="tab-btn active" data-tab="saturation">Saturation</button>
+        <button class="tab-btn" data-tab="superheated">Superheated</button>
+      </div>
+
+      <div id="saturation-tab" class="tab-content active">
+        <div class="sub-tabs">
+          <button class="sub-tab-btn active" data-subtab="sat-by-temp">By Temperature</button>
+          <button class="sub-tab-btn" data-subtab="sat-by-pres">By Pressure</button>
+        </div>
+
+        <div id="sat-by-temp" class="sub-tab-content active">
+          <div class="table-scroll">
+            <table id="sat-table-temp">
+              <thead>
+                <tr>
+                  <th>T (°C)</th>
+                  <th>P (kPa)</th>
+                  <th>v_f</th>
+                  <th>v_g</th>
+                  <th>h_f</th>
+                  <th>h_g</th>
+                  <th>s_f</th>
+                  <th>s_g</th>
+                </tr>
+              </thead>
+              <tbody id="sat-tbody-temp"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="sat-by-pres" class="sub-tab-content">
+          <div class="table-scroll">
+            <table id="sat-table-pres">
+              <thead>
+                <tr>
+                  <th>P (kPa)</th>
+                  <th>T (°C)</th>
+                  <th>v_f</th>
+                  <th>v_g</th>
+                  <th>h_f</th>
+                  <th>h_g</th>
+                  <th>s_f</th>
+                  <th>s_g</th>
+                </tr>
+              </thead>
+              <tbody id="sat-tbody-pres"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="superheated-tab" class="tab-content">
+        <div class="table-scroll">
+          <table id="super-table">
+            <thead>
+              <tr>
+                <th>P (kPa)</th>
+                <th>T (°C)</th>
+                <th>v</th>
+                <th>h</th>
+                <th>s</th>
+                <th>u</th>
+              </tr>
+            </thead>
+            <tbody id="super-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
